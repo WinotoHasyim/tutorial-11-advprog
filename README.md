@@ -48,3 +48,4 @@ Jumlah logs bertambah setelah mengakses servicenya
 
 ### What is the purpose of the `-n` option and why did the output not list the pods/services that you explicitly created?
 
+-n digunakan untuk mengspesifikasikan namespace dalam menampilkan servies/resources. Dalam hal ini, kubectl get services -n kube-system akan menampilkan service dari namespace kube-system. Jika tidak menspesifikasikan namespace, maka servies yang akan ditampilkan berasal dari namespace `default`
