@@ -49,3 +49,33 @@ Jumlah logs bertambah setelah mengakses servicenya
 ### What is the purpose of the `-n` option and why did the output not list the pods/services that you explicitly created?
 
 -n digunakan untuk mengspesifikasikan namespace dalam menampilkan servies/resources. Dalam hal ini, kubectl get services -n kube-system akan menampilkan service dari namespace kube-system. Jika tidak menspesifikasikan namespace, maka servies yang akan ditampilkan berasal dari namespace `default`
+
+## Reflection on Rolling Update & Kubernetes Manifest File
+
+### What is the difference between Rolling Update and Recreate deployment strategy?
+
+Perbedaannya terletak pada downtime yang ketika terdapat proses update. Dengan RollingUpdate, tidak terdapat downtime karena pod lama tetap berjalan, sedangkan pod baru dibuat satu per satu. Sedangkan dengan Recreate, semua pod akan dihentikan dan pod baru akan dibuat sehingga terdapat downtime
+
+### Try deploying the Spring Petclinic REST using Recreate deployment strategy and document your attempt.
+
+Sebelum menerapkan recreate deployement strategy:
+![](assets/1.png)
+
+Kemudian:
+![](assets/2.png)
+![](assets/3.png)
+![](assets/4.png)
+![](assets/5.png)
+
+
+### Prepare different manifest files for executing Recreate deployment strategy
+
+File recreate-deployment terdapat pada repository. file tersebut dibuat berdasarkan deployment.yaml tetapi dengan mengubah strategy nya menjadi Recreate
+
+### What do you think are the benefits of using Kubernetes manifest files? Recall your experience in deploying the app manually and compare it to your experience when deploying the same app by applying the manifest files (i.e., invoking `kubectl apply -f` command) to the cluster.
+
+Menggunakan kubernetese manifest files dapat memberikan beberapa benefit, yaitu:
+- bisa mendukung proses automasi deployment sehingga menurunkan resiko human error. 
+- Manfiest files bisa di-store juga di git. 
+- Dengan menentukan manifest file, deployment bisa bersifat konsisten
+- Manifest file dapat memberikan kesan dokumentasi pada prosedur deployment
